@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  CLIENT
+  FREELANCER
+}
+
+enum JobStatus {
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum ProposalStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  WITHDRAWN
+}
+
+model User {
+  id            String   @id @default(cuid())
+  walletAddress String   @unique
+  username      String?
+  name          String?
+  bio           String?
+  role          Role     @default(FREELANCER)
+  skills        String?
+  hourlyRate    Float?
+  avatarUrl     String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  jobs                  Job[]
+  proposals             Proposal[]
+  contractsAsClient     Contract[] @relation("ClientContracts")
+  contractsAsFreelancer Contract[] @relation("FreelancerContracts")
+  reviewsGiven          Review[]       @relation("ReviewerReviews")
+  reviewsReceived       Review[]       @relation("RevieweeReviews")
+  balance               Float          @default(0)
+  transactions          Transaction[]
+}
+
+model Job {
+  id          String    @id @default(cuid())
+  clientId    String
+  title       String
+  description String
+  skills      String?
+  budget      Float?
+  deadline    DateTime?
+  status      JobStatus @default(OPEN)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  client    User       @relation(fields: [clientId], references: [id])
+  proposals Proposal[]
+  contract  Contract?
+}
+
+model Proposal {
+  id           String          @id @default(cuid())
+  jobId        String
+  freelancerId String
+  coverLetter  String
+  bidAmount    Float
+  timeframe    Int?
+  status       ProposalStatus  @default(PENDING)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  job        Job       @relation(fields: [jobId], references: [id])
+  freelancer User      @relation(fields: [freelancerId], references: [id])
+  contract   Contract?
+}
+
+model Contract {
+  id            String   @id @default(cuid())
+  jobId         String   @unique
+  clientId      String
+  freelancerId  String
+  proposalId    String   @unique
+  amount        Float
+  status        String   @default("ACTIVE")
+  startDate     DateTime @default(now())
+  endDate       DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  job       Job       @relation(fields: [jobId], references: [id])
+  client    User      @relation("ClientContracts", fields: [clientId], references: [id])
+  freelancer User     @relation("FreelancerContracts", fields: [freelancerId], references: [id])
+  proposal  Proposal  @relation(fields: [proposalId], references: [id])
+  reviews   Review[]
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  contractId  String
+  reviewerId  String
+  revieweeId  String
+  rating      Int
+  comment     String?
+  createdAt   DateTime @default(now())
+
+  contract Contract @relation(fields: [contractId], references: [id])
+  reviewer User    @relation("ReviewerReviews", fields: [reviewerId], references: [id])
+  reviewee User    @relation("RevieweeReviews", fields: [revieweeId], references: [id])
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String
+  amount      Float
+  description String?
+  referenceId String?
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}

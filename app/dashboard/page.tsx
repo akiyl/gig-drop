@@ -58,6 +58,40 @@ export default function DashboardPage() {
           </div>
         )}
 
+        {profile && (
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl mb-8">
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="flex items-center gap-3">
+                  <h2 className="text-2xl font-bold">{profile.name ?? profile.username ?? "Unnamed"}</h2>
+                  <span className={`rounded-full px-3 py-1 text-xs font-semibold ${profile.role === "CLIENT" ? "bg-purple-500/20 text-purple-300" : "bg-emerald-500/20 text-emerald-300"}`}>
+                    {profile.role === "CLIENT" ? "Client" : "Freelancer"}
+                  </span>
+                </div>
+                {profile.username && <p className="text-zinc-500 mt-1">@{profile.username}</p>}
+              </div>
+              {profile.hourlyRate && (
+                <div className="text-right">
+                  <p className="text-3xl font-bold text-emerald-400">${profile.hourlyRate}</p>
+                  <p className="text-xs text-zinc-500">/ hr</p>
+                </div>
+              )}
+            </div>
+            {profile.bio && (
+              <p className="mt-4 text-zinc-300 line-clamp-2">{profile.bio}</p>
+            )}
+            {profile.skills && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {profile.skills.split(",").map((skill) => (
+                  <span key={skill.trim()} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300">
+                    {skill.trim()}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
             <p className="text-sm text-zinc-400">

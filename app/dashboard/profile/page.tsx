@@ -36,8 +36,7 @@ export default function ProfilePage() {
         skills: form.get("skills") as string,
         hourlyRate: Number(form.get("hourlyRate")),
       });
-      setMessage("Profile saved!");
-      router.refresh();
+      router.push("/dashboard");
     } catch (err: any) {
       setMessage(err.message ?? "Failed to save");
     } finally {
@@ -97,8 +96,8 @@ export default function ProfilePage() {
               defaultValue={profile?.role ?? "FREELANCER"}
               className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white focus:outline-none focus:border-purple-500"
             >
-              <option value="FREELANCER">Find Work (Freelancer)</option>
-              <option value="CLIENT">Hire Talent (Client)</option>
+              <option value="FREELANCER" className="text-zinc-900">Find Work (Freelancer)</option>
+              <option value="CLIENT" className="text-zinc-900">Hire Talent (Client)</option>
             </select>
           </div>
           <div>

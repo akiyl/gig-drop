@@ -33,6 +33,18 @@ export default function DashboardPage() {
           <h1 className="text-4xl font-bold">Dashboard</h1>
           <div className="flex gap-3">
             <Link
+              href="/dashboard/deploy"
+              className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-6 py-3 font-semibold hover:bg-emerald-500/20 transition"
+            >
+              Deploy Contract
+            </Link>
+            <Link
+              href="/dashboard/test-payment"
+              className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-6 py-3 font-semibold hover:bg-amber-500/20 transition"
+            >
+              Test Payments
+            </Link>
+            <Link
               href="/dashboard/wallet"
               className="rounded-xl border border-purple-500/30 bg-purple-500/10 px-6 py-3 font-semibold hover:bg-purple-500/20 transition"
             >

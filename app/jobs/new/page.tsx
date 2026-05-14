@@ -1,12 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useWriteContract } from "wagmi";
+import { createPublicClient, http } from "viem";
+import { sepolia } from "viem/chains";
 import { useRouter } from "next/navigation";
 import { createJob } from "../../actions/job";
+import {
+  GIG_DROP_ABI,
+  JOB_POST_FEE_WEI,
+  JOB_POST_FEE_ETH,
+  getContractAddress,
+} from "@/lib/contract";
+
+const publicClient = createPublicClient({
+  chain: sepolia,
+  transport: http(),
+});
 
 export default function PostJobPage() {
   const { address, isConnected } = useAccount();
+  const { writeContractAsync } = useWriteContract();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -18,11 +32,30 @@ export default function PostJobPage() {
       return;
     }
 
+    const contractAddress = getContractAddress();
+    if (!contractAddress) {
+      setMessage("No contract deployed. Deploy it from the dashboard first.");
+      return;
+    }
+
     setLoading(true);
     setMessage("");
 
     const form = new FormData(e.currentTarget);
     try {
+      setMessage(`Sending ${JOB_POST_FEE_ETH} ETH — confirm in your wallet...`);
+      const hash = await writeContractAsync({
+        address: contractAddress,
+        abi: GIG_DROP_ABI,
+        functionName: "createJobPost",
+        value: JOB_POST_FEE_WEI,
+      });
+
+      setMessage("Waiting for confirmation...");
+      await publicClient.waitForTransactionReceipt({ hash });
+
+      setMessage("Payment confirmed! Creating job post...");
+
       await createJob({
         walletAddress: address,
         title: form.get("title") as string,
@@ -106,7 +139,7 @@ export default function PostJobPage() {
             disabled={loading}
             className="rounded-xl bg-white px-6 py-3 font-semibold text-black hover:opacity-90 transition disabled:opacity-50"
           >
-            {loading ? "Posting..." : "Post Job"}
+            {loading ? "Processing..." : `Post Job (${JOB_POST_FEE_ETH} ETH)`}
           </button>
         </form>
       </div>

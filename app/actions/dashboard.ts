@@ -63,8 +63,8 @@ export async function getWalletData(walletAddress: string) {
     }),
   ]);
 
-  const escrowBalance = activeFreelancerContracts.reduce((s, c) => s + c.amount, 0);
-  const pendingPayouts = activeClientContracts.reduce((s, c) => s + c.amount, 0);
+  const escrowBalance = activeFreelancerContracts.reduce((s: number, c: { amount: number }) => s + c.amount, 0);
+  const pendingPayouts = activeClientContracts.reduce((s: number, c: { amount: number }) => s + c.amount, 0);
 
   return {
     balance: user.balance,

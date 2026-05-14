@@ -20,19 +20,34 @@ export async function getDashboardStats(walletAddress: string) {
     return { activeJobs, totalProposals, completedContracts, totalEarned: 0 };
   }
 
-  const [activeBids, wonContracts, completedContracts, contracts] = await Promise.all([
-    prisma.proposal.count({ where: { freelancerId: user.id, status: "PENDING" } }),
-    prisma.contract.count({ where: { freelancerId: user.id, status: "ACTIVE" } }),
-    prisma.contract.count({ where: { freelancerId: user.id, status: "COMPLETED" } }),
-    prisma.contract.findMany({
-      where: { freelancerId: user.id, status: "COMPLETED" },
-      select: { amount: true },
-    }),
-  ]);
+  const [activeBids, wonContracts, completedContracts, contracts] =
+    await Promise.all([
+      prisma.proposal.count({
+        where: { freelancerId: user.id, status: "PENDING" },
+      }),
+      prisma.contract.count({
+        where: { freelancerId: user.id, status: "ACTIVE" },
+      }),
+      prisma.contract.count({
+        where: { freelancerId: user.id, status: "COMPLETED" },
+      }),
+      prisma.contract.findMany({
+        where: { freelancerId: user.id, status: "COMPLETED" },
+        select: { amount: true },
+      }),
+    ]);
 
-  const totalEarned = contracts.reduce((sum: number, c: { amount: number }) => sum + c.amount, 0);
+  const totalEarned = contracts.reduce(
+    (sum: number, c: { amount: number }) => sum + c.amount,
+    0,
+  );
 
-  return { activeJobs: activeBids, totalProposals: wonContracts, completedContracts, totalEarned };
+  return {
+    activeJobs: activeBids,
+    totalProposals: wonContracts,
+    completedContracts,
+    totalEarned,
+  };
 }
 
 export async function getProfileByWallet(walletAddress: string) {
@@ -63,8 +78,14 @@ export async function getWalletData(walletAddress: string) {
     }),
   ]);
 
-  const escrowBalance = activeFreelancerContracts.reduce((s: number, c: { amount: number }) => s + c.amount, 0);
-  const pendingPayouts = activeClientContracts.reduce((s: number, c: { amount: number }) => s + c.amount, 0);
+  const escrowBalance = activeFreelancerContracts.reduce(
+    (s: number, c: { amount: number }) => s + c.amount,
+    0,
+  );
+  const pendingPayouts = activeClientContracts.reduce(
+    (s: number, c: { amount: number }) => s + c.amount,
+    0,
+  );
 
   return {
     balance: user.balance,

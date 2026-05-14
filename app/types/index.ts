@@ -1,4 +1,6 @@
-import type { Role, JobStatus, ProposalStatus } from "@prisma/client";
+type Role = "CLIENT" | "FREELANCER";
+type JobStatus = "OPEN" | "IN_PROGRESS" | "COMPLETED" | "CANCELLED";
+type ProposalStatus = "PENDING" | "ACCEPTED" | "REJECTED" | "WITHDRAWN";
 
 export type { Role, JobStatus, ProposalStatus };
 

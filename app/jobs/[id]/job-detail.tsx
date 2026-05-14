@@ -31,7 +31,7 @@ export default function JobDetail({ job }: { job: JobWithClient }) {
         <p className="mt-6 text-zinc-300 leading-relaxed">{job.description}</p>
 
         <div className="mt-6 flex flex-wrap gap-2">
-          {job.skills?.split(",").map((s) => (
+          {job.skills?.split(",").map((s: string) => (
             <span
               key={s}
               className="rounded-full bg-purple-500/10 px-3 py-1.5 text-sm text-purple-300"

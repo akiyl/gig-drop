@@ -13,7 +13,7 @@ export default function ProposalList({
 
   return (
     <div className="space-y-4">
-      {proposals.map((proposal) => (
+      {proposals.map((proposal: ProposalWithFreelancer) => (
         <div
           key={proposal.id}
           className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"

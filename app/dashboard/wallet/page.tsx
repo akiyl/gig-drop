@@ -91,7 +91,7 @@ export default function WalletPage() {
             <p className="text-zinc-500 text-sm">No transactions yet.</p>
           ) : (
             <div className="space-y-3">
-              {data.transactions.map((tx) => (
+              {data.transactions.map((tx: import("../../types").TransactionItem) => (
                 <div
                   key={tx.id}
                   className="flex items-center justify-between rounded-xl border border-white/5 bg-black/40 p-4"

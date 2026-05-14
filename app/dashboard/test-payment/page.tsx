@@ -98,7 +98,7 @@ export default function TestPaymentPage() {
         <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
           <h2 className="text-sm font-semibold text-zinc-300 mb-3">Quick Fill</h2>
           <div className="flex flex-wrap gap-2">
-            {[100, 500, 1000, 5000].map((n) => (
+            {[100, 500, 1000, 5000].map((n: number) => (
               <button
                 key={n}
                 onClick={() => setAmount(String(n))}

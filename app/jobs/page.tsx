@@ -26,7 +26,7 @@ export default async function JobsPage({
           {jobs.length === 0 && (
             <p className="text-zinc-400 text-center py-20">No jobs found.</p>
           )}
-          {jobs.map((job) => (
+          {jobs.map((job: import("../types").JobWithClient) => (
             <JobCard key={job.id} job={job} />
           ))}
         </div>

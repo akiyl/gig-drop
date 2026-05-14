@@ -11,7 +11,7 @@ export default function JobCard({ job }: { job: JobWithClient }) {
           <h3 className="text-xl font-semibold">{job.title}</h3>
           <p className="mt-2 text-sm text-zinc-400 line-clamp-2">{job.description}</p>
           <div className="mt-4 flex flex-wrap gap-2">
-            {job.skills?.split(",").map((s) => (
+            {job.skills?.split(",").map((s: string) => (
               <span
                 key={s}
                 className="rounded-full bg-purple-500/10 px-3 py-1 text-xs text-purple-300"

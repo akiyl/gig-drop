@@ -28,7 +28,7 @@ export default async function FreelancersPage() {
               No freelancers registered yet.
             </p>
           )}
-          {freelancers.map((f) => (
+          {freelancers.map((f: { id: string; name: string | null; username: string | null; bio: string | null; skills: string | null; hourlyRate: number | null; createdAt: Date; _count: { proposals: number; reviewsReceived: number } }) => (
             <div
               key={f.id}
               className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
@@ -49,7 +49,7 @@ export default async function FreelancersPage() {
               )}
               {f.skills && (
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {f.skills.split(",").slice(0, 4).map((s) => (
+                  {f.skills.split(",").slice(0, 4).map((s: string) => (
                     <span
                       key={s}
                       className="rounded-full bg-purple-500/10 px-3 py-1 text-xs text-purple-300"

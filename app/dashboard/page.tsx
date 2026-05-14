@@ -94,7 +94,7 @@ export default function DashboardPage() {
             )}
             {profile.skills && (
               <div className="mt-4 flex flex-wrap gap-2">
-                {profile.skills.split(",").map((skill) => (
+                {profile.skills.split(",").map((skill: string) => (
                   <span key={skill.trim()} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300">
                     {skill.trim()}
                   </span>

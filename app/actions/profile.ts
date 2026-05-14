@@ -1,8 +1,9 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import type { Role } from "@prisma/client";
 import type { UserProfile } from "@/app/types";
+
+type Role = "CLIENT" | "FREELANCER";
 
 export async function getProfile(walletAddress: string): Promise<UserProfile | null> {
   const user = await prisma.user.findUnique({

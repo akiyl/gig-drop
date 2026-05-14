@@ -30,7 +30,7 @@ export async function getDashboardStats(walletAddress: string) {
     }),
   ]);
 
-  const totalEarned = contracts.reduce((sum: number, c) => sum + c.amount, 0);
+  const totalEarned = contracts.reduce((sum: number, c: { amount: number }) => sum + c.amount, 0);
 
   return { activeJobs: activeBids, totalProposals: wonContracts, completedContracts, totalEarned };
 }

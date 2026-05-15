@@ -45,53 +45,54 @@ export default function DeployPage() {
 
   if (!isConnected) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <p className="text-zinc-400">Connect your wallet to deploy the contract.</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
+        <p style={{ color: "#797067" }}>Connect your wallet to deploy the contract.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
       <div className="mx-auto max-w-xl px-6 py-12">
         <h1 className="text-3xl font-bold mb-2">Deploy GigDrop Contract</h1>
-        <p className="text-zinc-500 mb-8">
+        <p className="mb-8" style={{ color: "#797067" }}>
           Deploy the GigDrop smart contract to Sepolia. This will cost a small gas fee.
         </p>
 
         {contractAddr ? (
-          <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 backdrop-blur-xl">
-            <p className="text-emerald-400 font-semibold mb-2">Deployed!</p>
-            <p className="text-sm text-zinc-300 break-all">{contractAddr}</p>
-            <p className="text-xs text-zinc-500 mt-2">Saved locally. You can now post jobs.</p>
+          <div className="rounded-2xl p-6" style={{ backgroundColor: "rgba(0, 199, 88, 0.1)", border: "1px solid rgba(0, 199, 88, 0.3)" }}>
+            <p className="font-semibold mb-2" style={{ color: "#00c758" }}>Deployed!</p>
+            <p className="text-sm break-all" style={{ color: "#423d38" }}>{contractAddr}</p>
+            <p className="text-xs mt-2" style={{ color: "#797067" }}>Saved locally. You can now post jobs.</p>
           </div>
         ) : (
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-            <p className="text-sm text-zinc-400 mb-4">
+          <div className="rounded-2xl p-6" style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}>
+            <p className="text-sm mb-4" style={{ color: "#797067" }}>
               Connected as{" "}
-              <span className="text-white font-mono">
+              <span className="font-mono" style={{ color: "#423d38" }}>
                 {address?.slice(0, 6)}...{address?.slice(-4)}
               </span>
             </p>
             <button
               onClick={handleDeploy}
               disabled={deploying}
-              className="w-full rounded-xl bg-purple-600 px-6 py-3 font-semibold hover:bg-purple-500 transition disabled:opacity-50"
+              className="w-full rounded-xl px-6 py-3 font-semibold transition disabled:opacity-50"
+              style={{ backgroundColor: "#fe6e00", color: "#ffffff" }}
             >
               {deploying ? "Deploying..." : "Deploy Contract"}
             </button>
-            {error && <p className="mt-4 text-sm text-red-400">{error}</p>}
+            {error && <p className="mt-4 text-sm" style={{ color: "#fb2c36" }}>{error}</p>}
           </div>
         )}
 
-        <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-          <h2 className="text-sm font-semibold text-zinc-300 mb-2">What this does</h2>
-          <ul className="text-sm text-zinc-500 space-y-1 list-disc list-inside">
+        <div className="mt-6 rounded-2xl p-6" style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}>
+          <h2 className="text-sm font-semibold mb-2" style={{ color: "#423d38" }}>What this does</h2>
+          <ul className="text-sm space-y-1 list-disc list-inside" style={{ color: "#797067" }}>
             <li>
-              Deploys a <span className="text-zinc-300">GigDrop</span> contract to Sepolia
+              Deploys a <span style={{ color: "#423d38" }}>GigDrop</span> contract to Sepolia
             </li>
             <li>
-              Job posters must pay <span className="text-zinc-300">0.00001 ETH</span> to create a
+              Job posters must pay <span style={{ color: "#423d38" }}>0.00001 ETH</span> to create a
               job
             </li>
             <li>Contract owner can withdraw accumulated fees</li>

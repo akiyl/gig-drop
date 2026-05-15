@@ -20,45 +20,50 @@ export default function DashboardPage() {
 
   if (!isConnected) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <p className="text-zinc-400">Connect your wallet to view your dashboard.</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#fcfaf7" }}>
+        <p style={{ color: "#797067" }}>Connect your wallet to view your dashboard.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
       <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="flex items-center justify-between mb-10">
-          <h1 className="text-4xl font-bold">Dashboard</h1>
-          <div className="flex gap-3">
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-3xl font-bold">Dashboard</h1>
+          <div className="flex gap-2">
             <Link
               href="/dashboard/deploy"
-              className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-6 py-3 font-semibold hover:bg-emerald-500/20 transition"
+              className="rounded-lg px-4 py-2 text-sm font-semibold transition hover:opacity-80"
+              style={{ backgroundColor: "rgba(0, 199, 88, 0.10)", color: "#00c758", border: "1px solid rgba(0, 199, 88, 0.30)" }}
             >
               Deploy Contract
             </Link>
             <Link
               href="/dashboard/test-payment"
-              className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-6 py-3 font-semibold hover:bg-amber-500/20 transition"
+              className="rounded-lg px-4 py-2 text-sm font-semibold transition hover:opacity-80"
+              style={{ backgroundColor: "rgba(237, 178, 0, 0.10)", color: "#edb200", border: "1px solid rgba(237, 178, 0, 0.30)" }}
             >
               Test Payments
             </Link>
             <Link
               href="/dashboard/contracts"
-              className="rounded-xl border border-blue-500/30 bg-blue-500/10 px-6 py-3 font-semibold hover:bg-blue-500/20 transition"
+              className="rounded-lg px-4 py-2 text-sm font-semibold transition hover:opacity-80"
+              style={{ backgroundColor: "rgba(48, 128, 255, 0.10)", color: "#3080ff", border: "1px solid rgba(48, 128, 255, 0.30)" }}
             >
               Contracts
             </Link>
             <Link
               href="/dashboard/wallet"
-              className="rounded-xl border border-purple-500/30 bg-purple-500/10 px-6 py-3 font-semibold hover:bg-purple-500/20 transition"
+              className="rounded-lg px-4 py-2 text-sm font-semibold transition hover:opacity-80"
+              style={{ backgroundColor: "rgba(254, 110, 0, 0.10)", color: "#fe6e00", border: "1px solid rgba(254, 110, 0, 0.30)" }}
             >
               Wallet
             </Link>
             <Link
               href="/dashboard/profile"
-              className="rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-semibold hover:bg-white/10 transition"
+              className="rounded-lg px-4 py-2 text-sm font-semibold transition hover:opacity-80"
+              style={{ backgroundColor: "#ffffff", color: "#423d38", border: "1px solid #e3e0dd" }}
             >
               {profile ? "Edit Profile" : "Create Profile"}
             </Link>
@@ -66,8 +71,8 @@ export default function DashboardPage() {
         </div>
 
         {!profile && (
-          <div className="rounded-2xl border border-purple-500/30 bg-purple-500/10 p-6 mb-8">
-            <p className="text-purple-300">
+          <div className="rounded-lg p-6 mb-8" style={{ backgroundColor: "rgba(254, 110, 0, 0.08)", border: "1px solid rgba(254, 110, 0, 0.25)" }}>
+            <p style={{ color: "#fe6e00" }}>
               You haven't created a profile yet.{' '}
               <Link href="/dashboard/profile" className="underline font-semibold">
                 Create one now
@@ -77,31 +82,44 @@ export default function DashboardPage() {
         )}
 
         {profile && (
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl mb-8">
+          <div
+            className="rounded-lg p-6 mb-8"
+            style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}
+          >
             <div className="flex items-start justify-between">
               <div>
                 <div className="flex items-center gap-3">
                   <h2 className="text-2xl font-bold">{profile.name ?? profile.username ?? "Unnamed"}</h2>
-                  <span className={`rounded-full px-3 py-1 text-xs font-semibold ${profile.role === "CLIENT" ? "bg-purple-500/20 text-purple-300" : "bg-emerald-500/20 text-emerald-300"}`}>
+                  <span
+                    className="rounded-full px-3 py-1 text-xs font-semibold"
+                    style={{
+                      backgroundColor: profile.role === "CLIENT" ? "rgba(254, 110, 0, 0.15)" : "rgba(0, 199, 88, 0.15)",
+                      color: profile.role === "CLIENT" ? "#fe6e00" : "#00c758",
+                    }}
+                  >
                     {profile.role === "CLIENT" ? "Client" : "Freelancer"}
                   </span>
                 </div>
-                {profile.username && <p className="text-zinc-500 mt-1">@{profile.username}</p>}
+                {profile.username && <p style={{ color: "#797067" }} className="mt-1">@{profile.username}</p>}
               </div>
               {profile.hourlyRate && (
                 <div className="text-right">
-                  <p className="text-3xl font-bold text-emerald-400">${profile.hourlyRate}</p>
-                  <p className="text-xs text-zinc-500">/ hr</p>
+                  <p className="text-3xl font-bold" style={{ color: "#00c758" }}>${profile.hourlyRate}</p>
+                  <p className="text-xs" style={{ color: "#797067" }}>/ hr</p>
                 </div>
               )}
             </div>
             {profile.bio && (
-              <p className="mt-4 text-zinc-300 line-clamp-2">{profile.bio}</p>
+              <p className="mt-4 line-clamp-2" style={{ color: "#423d38" }}>{profile.bio}</p>
             )}
             {profile.skills && (
               <div className="mt-4 flex flex-wrap gap-2">
                 {profile.skills.split(",").map((skill: string) => (
-                  <span key={skill.trim()} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300">
+                  <span
+                    key={skill.trim()}
+                    className="rounded-full px-3 py-1 text-xs"
+                    style={{ backgroundColor: "#f3f4f6", color: "#797067", border: "1px solid #e3e0dd" }}
+                  >
                     {skill.trim()}
                   </span>
                 ))}
@@ -110,25 +128,37 @@ export default function DashboardPage() {
           </div>
         )}
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-            <p className="text-sm text-zinc-400">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div
+            className="rounded-lg p-6"
+            style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}
+          >
+            <p className="text-sm" style={{ color: "#797067" }}>
               {profile?.role === "CLIENT" ? "Active Jobs" : "Active Bids"}
             </p>
-            <h3 className="mt-3 text-4xl font-bold">{stats?.activeJobs ?? 0}</h3>
+            <h3 className="mt-3 text-4xl font-bold" style={{ color: "#fe6e00" }}>{stats?.activeJobs ?? 0}</h3>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-            <p className="text-sm text-zinc-400">
+          <div
+            className="rounded-lg p-6"
+            style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}
+          >
+            <p className="text-sm" style={{ color: "#797067" }}>
               {profile?.role === "CLIENT" ? "Total Proposals" : "Active Contracts"}
             </p>
             <h3 className="mt-3 text-4xl font-bold">{stats?.totalProposals ?? 0}</h3>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-            <p className="text-sm text-zinc-400">Completed</p>
-            <h3 className="mt-3 text-4xl font-bold">{stats?.completedContracts ?? 0}</h3>
+          <div
+            className="rounded-lg p-6"
+            style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}
+          >
+            <p className="text-sm" style={{ color: "#797067" }}>Completed</p>
+            <h3 className="mt-3 text-4xl font-bold" style={{ color: "#00c758" }}>{stats?.completedContracts ?? 0}</h3>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-            <p className="text-sm text-zinc-400">Total Earned</p>
+          <div
+            className="rounded-lg p-6"
+            style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}
+          >
+            <p className="text-sm" style={{ color: "#797067" }}>Total Earned</p>
             <h3 className="mt-3 text-4xl font-bold">
               ${(stats?.totalEarned ?? 0).toLocaleString()}
             </h3>

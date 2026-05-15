@@ -48,52 +48,52 @@ export default function ContractsPage() {
 
   if (!isConnected) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <p className="text-zinc-400">Connect your wallet to view contracts.</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#fcfaf7" }}>
+        <p style={{ color: "#797067" }}>Connect your wallet to view contracts.</p>
       </div>
     );
   }
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <p className="text-zinc-400">Loading contracts...</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#fcfaf7" }}>
+        <p style={{ color: "#797067" }}>Loading contracts...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
       <div className="mx-auto max-w-5xl px-6 py-12">
-        <h1 className="text-4xl font-bold mb-10">Contracts</h1>
+        <h1 className="text-3xl font-bold mb-8">Contracts</h1>
 
         {contracts.length === 0 ? (
-          <p className="text-zinc-500">No contracts yet. Accept a proposal to start one.</p>
+          <p style={{ color: "#797067" }}>No contracts yet. Accept a proposal to start one.</p>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {contracts.map((contract) => {
               const isClient = contract.clientName !== null;
               const counterparty = isClient ? contract.freelancerName : contract.clientName;
               return (
                 <div
                   key={contract.id}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
+                  className="rounded-lg p-6"
+                  style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-3">
                         <h3 className="text-lg font-semibold">{contract.jobTitle}</h3>
-                        <span className={`rounded-full px-3 py-1 text-xs font-medium ${
-                          contract.status === "ACTIVE"
-                            ? "bg-emerald-500/20 text-emerald-400"
-                            : contract.status === "COMPLETED"
-                            ? "bg-blue-500/20 text-blue-400"
-                            : "bg-red-500/20 text-red-400"
-                        }`}>
+                        <span className="rounded-full px-3 py-1 text-xs font-medium"
+                          style={{
+                            backgroundColor: contract.status === "ACTIVE" ? "rgba(0, 199, 88, 0.15)" : contract.status === "COMPLETED" ? "rgba(48, 128, 255, 0.15)" : "rgba(251, 44, 54, 0.15)",
+                            color: contract.status === "ACTIVE" ? "#00c758" : contract.status === "COMPLETED" ? "#3080ff" : "#fb2c36",
+                          }}
+                        >
                           {contract.status}
                         </span>
                       </div>
-                      <div className="mt-2 flex items-center gap-4 text-sm text-zinc-500">
+                      <div className="mt-2 flex items-center gap-4 text-sm" style={{ color: "#797067" }}>
                         <span>
                           {isClient ? "Hired" : "Working for"}: {counterparty ?? "Unknown"}
                         </span>
@@ -102,7 +102,7 @@ export default function ContractsPage() {
                       </div>
                     </div>
                     <div className="text-right shrink-0">
-                      <p className="text-2xl font-bold text-emerald-400">
+                      <p className="text-2xl font-bold" style={{ color: "#00c758" }}>
                         ${contract.amount.toLocaleString()}
                       </p>
                       {contract.status === "ACTIVE" && isClient && (
@@ -110,14 +110,16 @@ export default function ContractsPage() {
                           <button
                             onClick={() => handleRelease(contract.id)}
                             disabled={actionId === contract.id}
-                            className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold hover:bg-emerald-500 transition disabled:opacity-50"
+                            className="rounded-lg px-4 py-2 text-sm font-semibold text-white transition disabled:opacity-50"
+                            style={{ backgroundColor: "#00c758" }}
                           >
                             {actionId === contract.id ? "..." : "Release Payment"}
                           </button>
                           <button
                             onClick={() => handleRefund(contract.id)}
                             disabled={actionId === contract.id}
-                            className="rounded-lg bg-red-600/50 px-4 py-2 text-sm font-semibold hover:bg-red-500/70 transition disabled:opacity-50"
+                            className="rounded-lg px-4 py-2 text-sm font-semibold text-white transition disabled:opacity-50"
+                            style={{ backgroundColor: "#fb2c36" }}
                           >
                             Refund
                           </button>

@@ -42,48 +42,52 @@ export default function SubmitProposal({ jobId }: { jobId: string }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-xl">
       <div>
-        <label className="block text-sm text-zinc-400 mb-1">Cover Letter</label>
+        <label className="block text-sm mb-1" style={{ color: "#797067" }}>Cover Letter</label>
         <textarea
           name="coverLetter"
           required
           rows={4}
-          className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500"
+          className="w-full rounded-xl p-4 placeholder-zinc-500 focus:outline-none focus:border-[#fe6e00]"
+          style={{ backgroundColor: "#f3f4f6", color: "#423d38", border: "1px solid #e3e0dd" }}
           placeholder="Why are you the best fit for this job?"
         />
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm text-zinc-400 mb-1">Bid Amount ($)</label>
+          <label className="block text-sm mb-1" style={{ color: "#797067" }}>Bid Amount ($)</label>
           <input
             name="bidAmount"
             type="number"
             required
             min={1}
-            className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500"
+            className="w-full rounded-xl p-4 placeholder-zinc-500 focus:outline-none focus:border-[#fe6e00]"
+            style={{ backgroundColor: "#f3f4f6", color: "#423d38", border: "1px solid #e3e0dd" }}
             placeholder="5000"
           />
         </div>
         <div>
-          <label className="block text-sm text-zinc-400 mb-1">Timeframe (days)</label>
+          <label className="block text-sm mb-1" style={{ color: "#797067" }}>Timeframe (days)</label>
           <input
             name="timeframe"
             type="number"
             required
             min={1}
-            className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500"
+            className="w-full rounded-xl p-4 placeholder-zinc-500 focus:outline-none focus:border-[#fe6e00]"
+            style={{ backgroundColor: "#f3f4f6", color: "#423d38", border: "1px solid #e3e0dd" }}
             placeholder="30"
           />
         </div>
       </div>
       {message && (
-        <p className={`text-sm ${message === "Proposal submitted!" ? "text-emerald-400" : "text-red-400"}`}>
+        <p className="text-sm" style={{ color: message === "Proposal submitted!" ? "#00c758" : "#fb2c36" }}>
           {message}
         </p>
       )}
       <button
         type="submit"
         disabled={loading}
-        className="rounded-xl bg-white px-6 py-3 font-semibold text-black hover:opacity-90 transition disabled:opacity-50"
+        className="rounded-xl px-6 py-3 font-semibold hover:opacity-90 transition disabled:opacity-50"
+        style={{ backgroundColor: "#ffffff", color: "#423d38", border: "1px solid #e3e0dd" }}
       >
         {loading ? "Submitting..." : "Submit Proposal"}
       </button>

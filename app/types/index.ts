@@ -79,6 +79,18 @@ export type TransactionItem = {
   createdAt: Date;
 };
 
+export type OnChainTransaction = {
+  hash: string;
+  from: string;
+  to: string;
+  value: string;
+  timeStamp: string;
+  gasUsed: string;
+  gasPrice: string;
+  isError: string;
+  txreceipt_status: string;
+};
+
 export type ContractWithDetails = {
   id: string;
   jobId: string;

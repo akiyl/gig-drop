@@ -92,11 +92,13 @@ export async function getWalletData(walletAddress: string) {
     escrowBalance,
     pendingPayouts,
     totalAssets: user.balance + escrowBalance,
-    transactions: user.transactions.map((t: { id: string; type: string; amount: number; description: string | null; createdAt: Date }) => ({
+    transactions: user.transactions.map((t: { id: string; type: string; amount: number; description: string | null; counterpartyId: string | null; counterpartyName: string | null; createdAt: Date }) => ({
       id: t.id,
       type: t.type,
       amount: t.amount,
       description: t.description,
+      counterpartyId: t.counterpartyId,
+      counterpartyName: t.counterpartyName,
       createdAt: t.createdAt,
     })),
   };

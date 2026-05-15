@@ -21,7 +21,7 @@ export async function getJobs(filters?: {
   return prisma.job.findMany({
     where,
     include: {
-      client: { select: { id: true, name: true, username: true, avatarUrl: true } },
+      client: { select: { id: true, name: true, username: true, avatarUrl: true, walletAddress: true } },
       _count: { select: { proposals: true } },
     },
     orderBy: { createdAt: "desc" },
@@ -32,7 +32,7 @@ export async function getJobById(id: string) {
   return prisma.job.findUnique({
     where: { id },
     include: {
-      client: { select: { id: true, name: true, username: true, avatarUrl: true } },
+      client: { select: { id: true, name: true, username: true, avatarUrl: true, walletAddress: true } },
       _count: { select: { proposals: true } },
     },
   });

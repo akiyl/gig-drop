@@ -45,6 +45,12 @@ export default function DashboardPage() {
               Test Payments
             </Link>
             <Link
+              href="/dashboard/contracts"
+              className="rounded-xl border border-blue-500/30 bg-blue-500/10 px-6 py-3 font-semibold hover:bg-blue-500/20 transition"
+            >
+              Contracts
+            </Link>
+            <Link
               href="/dashboard/wallet"
               className="rounded-xl border border-purple-500/30 bg-purple-500/10 px-6 py-3 font-semibold hover:bg-purple-500/20 transition"
             >

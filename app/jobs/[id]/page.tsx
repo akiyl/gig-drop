@@ -29,7 +29,7 @@ export default async function JobDetailPage({
         <JobDetail job={job} />
         <div className="mt-12">
           <h2 className="text-2xl font-bold mb-6">Proposals ({proposals.length})</h2>
-          <ProposalList proposals={proposals} />
+          <ProposalList proposals={proposals} job={job} />
         </div>
         <div className="mt-12 border-t border-white/10 pt-8">
           <h2 className="text-2xl font-bold mb-6">Submit a Proposal</h2>

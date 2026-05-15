@@ -31,6 +31,7 @@ export type JobWithClient = {
     name: string | null;
     username: string | null;
     avatarUrl: string | null;
+    walletAddress: string | null;
   };
   _count?: {
     proposals: number;
@@ -73,5 +74,21 @@ export type TransactionItem = {
   type: string;
   amount: number;
   description: string | null;
+  counterpartyId: string | null;
+  counterpartyName: string | null;
   createdAt: Date;
+};
+
+export type ContractWithDetails = {
+  id: string;
+  jobId: string;
+  jobTitle: string;
+  clientId: string;
+  clientName: string | null;
+  freelancerId: string;
+  freelancerName: string | null;
+  amount: number;
+  status: string;
+  startDate: Date;
+  endDate: Date | null;
 };

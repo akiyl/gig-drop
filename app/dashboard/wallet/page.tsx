@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useSendTransaction } from "wagmi";
+import { parseEther } from "viem";
 import { getWalletData } from "../../actions/dashboard";
 import { transferFunds } from "../../actions/payment";
 import type { WalletData } from "../../types";
@@ -15,6 +16,9 @@ export default function WalletPage() {
   const [sendAmount, setSendAmount] = useState("");
   const [sending, setSending] = useState(false);
   const [sendResult, setSendResult] = useState<{ ok: boolean; msg: string } | null>(null);
+  const [sendMode, setSendMode] = useState<"internal" | "onchain">("internal");
+  const [txHash, setTxHash] = useState<string | null>(null);
+  const { sendTransactionAsync } = useSendTransaction();
 
   useEffect(() => {
     if (!address) {
@@ -32,14 +36,26 @@ export default function WalletPage() {
     if (!address || !sendAddr || !sendAmount) return;
     setSending(true);
     setSendResult(null);
+    setTxHash(null);
     try {
-      await transferFunds(address, sendAddr, Number(sendAmount));
-      setSendResult({ ok: true, msg: `Sent $${sendAmount} successfully` });
-      setSendAddr("");
-      setSendAmount("");
-      setShowSend(false);
-      const refreshed = await getWalletData(address);
-      setData(refreshed);
+      if (sendMode === "onchain") {
+        const hash = await sendTransactionAsync({
+          to: sendAddr as `0x${string}`,
+          value: parseEther(sendAmount),
+        });
+        setTxHash(hash);
+        setSendResult({ ok: true, msg: `Sent ${sendAmount} ETH successfully!` });
+        setSendAddr("");
+        setSendAmount("");
+      } else {
+        await transferFunds(address, sendAddr, Number(sendAmount));
+        setSendResult({ ok: true, msg: `Sent $${sendAmount} successfully` });
+        setSendAddr("");
+        setSendAmount("");
+        setShowSend(false);
+        const refreshed = await getWalletData(address);
+        setData(refreshed);
+      }
     } catch (e: any) {
       setSendResult({ ok: false, msg: e.message ?? "Failed" });
     } finally {
@@ -208,9 +224,28 @@ export default function WalletPage() {
       {showSend && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
           <div className="w-full max-w-md rounded-2xl border border-white/10 bg-zinc-900 p-6 shadow-2xl">
-            <h2 className="text-xl font-bold mb-2">Send Funds</h2>
-            <p className="text-sm text-zinc-500 mb-4">Transfer to another user on GigDrop.</p>
-            <p className="text-xs text-amber-400/80 mb-6">Recipient must have a profile on GigDrop to receive funds.</p>
+            <h2 className="text-xl font-bold mb-4">Send Funds</h2>
+
+            <div className="flex rounded-xl border border-white/10 p-1 mb-6">
+              <button
+                onClick={() => { setSendMode("internal"); setSendResult(null); }}
+                className={`flex-1 rounded-lg py-2 text-sm font-semibold transition ${sendMode === "internal" ? "bg-blue-600 text-white" : "text-zinc-400 hover:text-white"}`}
+              >
+                Internal
+              </button>
+              <button
+                onClick={() => { setSendMode("onchain"); setSendResult(null); }}
+                className={`flex-1 rounded-lg py-2 text-sm font-semibold transition ${sendMode === "onchain" ? "bg-blue-600 text-white" : "text-zinc-400 hover:text-white"}`}
+              >
+                On-Chain ETH
+              </button>
+            </div>
+
+            {sendMode === "internal" ? (
+              <p className="text-xs text-amber-400/80 mb-4">Recipient must have a profile on GigDrop to receive funds.</p>
+            ) : (
+              <p className="text-xs text-amber-400/80 mb-4">Sends real ETH from your connected wallet. Gas fees apply.</p>
+            )}
 
             <label className="block text-sm text-zinc-400 mb-1">Recipient Wallet Address</label>
             <input
@@ -220,25 +255,40 @@ export default function WalletPage() {
               className="w-full rounded-xl border border-white/10 bg-black p-4 text-white focus:outline-none focus:border-blue-500 mb-4 font-mono text-sm"
             />
 
-            <label className="block text-sm text-zinc-400 mb-1">Amount ($)</label>
+            <label className="block text-sm text-zinc-400 mb-1">
+              Amount {sendMode === "onchain" ? "(ETH)" : "($)"}
+            </label>
             <input
               type="number"
-              min={1}
+              min={0}
+              step={sendMode === "onchain" ? "0.0001" : "1"}
               value={sendAmount}
               onChange={(e) => setSendAmount(e.target.value)}
-              placeholder="Enter amount..."
+              placeholder={sendMode === "onchain" ? "0.00" : "Enter amount..."}
               className="w-full rounded-xl border border-white/10 bg-black p-4 text-white focus:outline-none focus:border-blue-500 mb-4"
             />
 
             {sendResult && (
-              <p className={`mb-4 text-sm ${sendResult.ok ? "text-emerald-400" : "text-red-400"}`}>
-                {sendResult.msg}
-              </p>
+              <div className="mb-4">
+                <p className={`text-sm ${sendResult.ok ? "text-emerald-400" : "text-red-400"}`}>
+                  {sendResult.msg}
+                </p>
+                {txHash && (
+                  <a
+                    href={`https://sepolia.etherscan.io/tx/${txHash}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-block text-xs text-blue-400 underline break-all"
+                  >
+                    View on Etherscan
+                  </a>
+                )}
+              </div>
             )}
 
             <div className="flex gap-3">
               <button
-                onClick={() => { setShowSend(false); setSendResult(null); }}
+                onClick={() => { setShowSend(false); setSendResult(null); setTxHash(null); setSendAddr(""); setSendAmount(""); }}
                 className="flex-1 rounded-xl border border-white/10 px-6 py-3 font-semibold hover:bg-white/5 transition"
               >
                 Cancel
@@ -248,7 +298,7 @@ export default function WalletPage() {
                 disabled={sending || !sendAddr || !sendAmount}
                 className="flex-1 rounded-xl bg-blue-600 px-6 py-3 font-semibold hover:bg-blue-500 transition disabled:opacity-50"
               >
-                {sending ? "Sending..." : "Send"}
+                {sending ? "Sending..." : sendMode === "onchain" ? "Send ETH" : "Send"}
               </button>
             </div>
           </div>

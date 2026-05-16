@@ -17,7 +17,7 @@ export default async function JobsPage({
           <a
             href="/jobs/new"
             className="rounded-xl px-6 py-3 font-semibold hover:opacity-90 transition"
-            style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#EAE6DF", border: "1px solid rgba(255,255,255,0.12)" }}
+            style={{ backgroundColor: "#0AFFB5", color: "#04040A" }}
           >
             Post a Job
           </a>

@@ -73,7 +73,7 @@ export default function TestPaymentPage() {
               onClick={handleDeposit}
               disabled={loading || !amount}
               className="flex-1 rounded-xl px-6 py-3 font-semibold transition disabled:opacity-50"
-              style={{ backgroundColor: "#0AFFB5", color: "#ffffff" }}
+              style={{ backgroundColor: "#0AFFB5", color: "#04040A" }}
             >
               {loading ? "Processing..." : "Deposit"}
             </button>

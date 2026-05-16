@@ -35,7 +35,7 @@ export default function DashboardPage() {
             <Link
               href="/dashboard/deploy"
               className="rounded-lg px-4 py-2 text-sm font-semibold transition hover:opacity-80"
-              style={{ backgroundColor: "rgba(10, 255, 181, 0.10)", color: "#0AFFB5", border: "1px solid rgba(10, 255, 181, 0.30)" }}
+              style={{ backgroundColor: "#0AFFB5", color: "#04040A" }}
             >
               Deploy Contract
             </Link>

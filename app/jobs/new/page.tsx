@@ -143,7 +143,7 @@ export default function PostJobPage() {
             type="submit"
             disabled={loading}
             className="rounded-xl px-6 py-3 font-semibold hover:opacity-90 transition disabled:opacity-50"
-            style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#EAE6DF", border: "1px solid rgba(255,255,255,0.12)" }}
+            style={{ backgroundColor: "#0AFFB5", color: "#04040A" }}
           >
             {loading ? "Processing..." : `Post Job (${JOB_POST_FEE_ETH} ETH)`}
           </button>

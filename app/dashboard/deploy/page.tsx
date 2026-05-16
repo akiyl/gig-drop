@@ -77,7 +77,7 @@ export default function DeployPage() {
               onClick={handleDeploy}
               disabled={deploying}
               className="w-full rounded-xl px-6 py-3 font-semibold transition disabled:opacity-50"
-              style={{ backgroundColor: "#fe6e00", color: "#ffffff" }}
+              style={{ backgroundColor: "#0AFFB5", color: "#04040A" }}
             >
               {deploying ? "Deploying..." : "Deploy Contract"}
             </button>

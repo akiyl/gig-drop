@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./home/decentrlance.css";
 
-import CustomCursor from "./home/custom-cursor";
 import Preloader from "./home/preloader";
 import HeroSection from "./home/hero-section";
 import MarqueeStrip from "./home/marquee-strip";
@@ -76,7 +75,6 @@ export default function HomePage() {
 
   return (
     <div className="decentrlance-home">
-      <CustomCursor />
       <Preloader />
       <div>
         <HeroSection />

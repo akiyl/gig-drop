@@ -51,7 +51,7 @@ export default function ProposalList({
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
               <div className="flex-1">
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full flex items-center justify-center text-sm font-bold" style={{ backgroundColor: "#fe6e00", color: "#ffffff" }}>
+                  <div className="h-10 w-10 rounded-full flex items-center justify-center text-sm font-bold" style={{ backgroundColor: "#0AFFB5", color: "#04040A" }}>
                     {proposal.freelancer.name?.charAt(0) ?? "F"}
                   </div>
                   <div>
@@ -99,7 +99,7 @@ export default function ProposalList({
                     onClick={() => handleAccept(proposal.id)}
                     disabled={accepting === proposal.id}
                     className="mt-3 block w-full rounded-lg px-4 py-2 text-sm font-semibold transition disabled:opacity-50"
-                    style={{ backgroundColor: "#0AFFB5", color: "#ffffff" }}
+                    style={{ backgroundColor: "#0AFFB5", color: "#04040A" }}
                   >
                     {accepting === proposal.id ? "Accepting..." : "Accept & Start Contract"}
                   </button>

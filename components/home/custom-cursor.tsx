@@ -28,7 +28,7 @@ export default function CustomCursor() {
 
     const addHover = () => document.body.classList.add("hovered");
     const removeHover = () => document.body.classList.remove("hovered");
-    const els = document.querySelectorAll(".decentrlance-home a, .decentrlance-home button, .decentrlance-home .feat-card, .decentrlance-home .tech-name");
+    const els = document.querySelectorAll("a, button, .feat-card, .tech-name");
     els.forEach((el) => {
       el.addEventListener("mouseenter", addHover);
       el.addEventListener("mouseleave", removeHover);

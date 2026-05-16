@@ -3,6 +3,7 @@ import { Syne, DM_Mono, Outfit } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "../components/theme-provider";
 import NavbarWrapper from "@/components/shared/navbar-wrapper";
+import CustomCursor from "../components/home/custom-cursor";
 import Web3Provider from "@/lib/web3-provider";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -60,6 +61,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
           <Web3Provider>
+            <CustomCursor />
             <NavbarWrapper />
             {children}
             <Toaster />

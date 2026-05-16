@@ -20,29 +20,29 @@ export default function DashboardPage() {
 
   if (!isConnected) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#fcfaf7" }}>
-        <p style={{ color: "#797067" }}>Connect your wallet to view your dashboard.</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#04040A" }}>
+        <p style={{ color: "#6B6774" }}>Connect your wallet to view your dashboard.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
-      <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold">Dashboard</h1>
-          <div className="flex gap-2">
+    <div className="min-h-screen" style={{ backgroundColor: "#04040A", color: "#EAE6DF" }}>
+      <div className="mx-auto max-w-7xl px-6 pt-24 pb-12">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold">Dashboard</h1>
+          <div className="flex flex-wrap gap-2">
             <Link
               href="/dashboard/deploy"
               className="rounded-lg px-4 py-2 text-sm font-semibold transition hover:opacity-80"
-              style={{ backgroundColor: "rgba(0, 199, 88, 0.10)", color: "#00c758", border: "1px solid rgba(0, 199, 88, 0.30)" }}
+              style={{ backgroundColor: "rgba(10, 255, 181, 0.10)", color: "#0AFFB5", border: "1px solid rgba(10, 255, 181, 0.30)" }}
             >
               Deploy Contract
             </Link>
             <Link
               href="/dashboard/test-payment"
               className="rounded-lg px-4 py-2 text-sm font-semibold transition hover:opacity-80"
-              style={{ backgroundColor: "rgba(237, 178, 0, 0.10)", color: "#edb200", border: "1px solid rgba(237, 178, 0, 0.30)" }}
+              style={{ backgroundColor: "rgba(255, 176, 32, 0.10)", color: "#FFB020", border: "1px solid rgba(255, 176, 32, 0.30)" }}
             >
               Test Payments
             </Link>
@@ -63,7 +63,7 @@ export default function DashboardPage() {
             <Link
               href="/dashboard/profile"
               className="rounded-lg px-4 py-2 text-sm font-semibold transition hover:opacity-80"
-              style={{ backgroundColor: "#ffffff", color: "#423d38", border: "1px solid #e3e0dd" }}
+              style={{ backgroundColor: "rgba(255, 255, 255, 0.06)", color: "#EAE6DF", border: "1px solid rgba(255, 255, 255, 0.12)" }}
             >
               {profile ? "Edit Profile" : "Create Profile"}
             </Link>
@@ -73,7 +73,7 @@ export default function DashboardPage() {
         {!profile && (
           <div className="rounded-lg p-6 mb-8" style={{ backgroundColor: "rgba(254, 110, 0, 0.08)", border: "1px solid rgba(254, 110, 0, 0.25)" }}>
             <p style={{ color: "#fe6e00" }}>
-              You haven't created a profile yet.{' '}
+              You haven&apos;t created a profile yet.{' '}
               <Link href="/dashboard/profile" className="underline font-semibold">
                 Create one now
               </Link> to start posting jobs or submitting proposals.
@@ -84,7 +84,7 @@ export default function DashboardPage() {
         {profile && (
           <div
             className="rounded-lg p-6 mb-8"
-            style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}
+            style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}
           >
             <div className="flex items-start justify-between">
               <div>
@@ -93,24 +93,24 @@ export default function DashboardPage() {
                   <span
                     className="rounded-full px-3 py-1 text-xs font-semibold"
                     style={{
-                      backgroundColor: profile.role === "CLIENT" ? "rgba(254, 110, 0, 0.15)" : "rgba(0, 199, 88, 0.15)",
-                      color: profile.role === "CLIENT" ? "#fe6e00" : "#00c758",
+                      backgroundColor: profile.role === "CLIENT" ? "rgba(254, 110, 0, 0.15)" : "rgba(10, 255, 181, 0.15)",
+                      color: profile.role === "CLIENT" ? "#fe6e00" : "#0AFFB5",
                     }}
                   >
                     {profile.role === "CLIENT" ? "Client" : "Freelancer"}
                   </span>
                 </div>
-                {profile.username && <p style={{ color: "#797067" }} className="mt-1">@{profile.username}</p>}
+                {profile.username && <p style={{ color: "#6B6774" }} className="mt-1">@{profile.username}</p>}
               </div>
               {profile.hourlyRate && (
                 <div className="text-right">
-                  <p className="text-3xl font-bold" style={{ color: "#00c758" }}>${profile.hourlyRate}</p>
-                  <p className="text-xs" style={{ color: "#797067" }}>/ hr</p>
+                  <p className="text-3xl font-bold" style={{ color: "#0AFFB5" }}>${profile.hourlyRate}</p>
+                  <p className="text-xs" style={{ color: "#6B6774" }}>/ hr</p>
                 </div>
               )}
             </div>
             {profile.bio && (
-              <p className="mt-4 line-clamp-2" style={{ color: "#423d38" }}>{profile.bio}</p>
+              <p className="mt-4 line-clamp-2" style={{ color: "#EAE6DF" }}>{profile.bio}</p>
             )}
             {profile.skills && (
               <div className="mt-4 flex flex-wrap gap-2">
@@ -118,7 +118,7 @@ export default function DashboardPage() {
                   <span
                     key={skill.trim()}
                     className="rounded-full px-3 py-1 text-xs"
-                    style={{ backgroundColor: "#f3f4f6", color: "#797067", border: "1px solid #e3e0dd" }}
+                    style={{ backgroundColor: "rgba(255,255,255,0.04)", color: "#6B6774", border: "1px solid rgba(255,255,255,0.08)" }}
                   >
                     {skill.trim()}
                   </span>
@@ -131,35 +131,35 @@ export default function DashboardPage() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <div
             className="rounded-lg p-6"
-            style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}
+            style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}
           >
-            <p className="text-sm" style={{ color: "#797067" }}>
+            <p className="text-sm" style={{ color: "#6B6774" }}>
               {profile?.role === "CLIENT" ? "Active Jobs" : "Active Bids"}
             </p>
             <h3 className="mt-3 text-4xl font-bold" style={{ color: "#fe6e00" }}>{stats?.activeJobs ?? 0}</h3>
           </div>
           <div
             className="rounded-lg p-6"
-            style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}
+            style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}
           >
-            <p className="text-sm" style={{ color: "#797067" }}>
+            <p className="text-sm" style={{ color: "#6B6774" }}>
               {profile?.role === "CLIENT" ? "Total Proposals" : "Active Contracts"}
             </p>
-            <h3 className="mt-3 text-4xl font-bold">{stats?.totalProposals ?? 0}</h3>
+            <h3 className="mt-3 text-4xl font-bold" style={{ color: "#EAE6DF" }}>{stats?.totalProposals ?? 0}</h3>
           </div>
           <div
             className="rounded-lg p-6"
-            style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}
+            style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}
           >
-            <p className="text-sm" style={{ color: "#797067" }}>Completed</p>
-            <h3 className="mt-3 text-4xl font-bold" style={{ color: "#00c758" }}>{stats?.completedContracts ?? 0}</h3>
+            <p className="text-sm" style={{ color: "#6B6774" }}>Completed</p>
+            <h3 className="mt-3 text-4xl font-bold" style={{ color: "#0AFFB5" }}>{stats?.completedContracts ?? 0}</h3>
           </div>
           <div
             className="rounded-lg p-6"
-            style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}
+            style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}
           >
-            <p className="text-sm" style={{ color: "#797067" }}>Total Earned</p>
-            <h3 className="mt-3 text-4xl font-bold">
+            <p className="text-sm" style={{ color: "#6B6774" }}>Total Earned</p>
+            <h3 className="mt-3 text-4xl font-bold" style={{ color: "#FFB020" }}>
               ${(stats?.totalEarned ?? 0).toLocaleString()}
             </h3>
           </div>

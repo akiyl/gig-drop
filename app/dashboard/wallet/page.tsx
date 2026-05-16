@@ -78,24 +78,24 @@ export default function WalletPage() {
 
   if (!isConnected) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#fcfaf7" }}>
-        <p style={{ color: "#797067" }}>Connect your wallet to view your balance.</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#04040A" }}>
+        <p style={{ color: "#6B6774" }}>Connect your wallet to view your balance.</p>
       </div>
     );
   }
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#fcfaf7" }}>
-        <p style={{ color: "#797067" }}>Loading wallet...</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#04040A" }}>
+        <p style={{ color: "#6B6774" }}>Loading wallet...</p>
       </div>
     );
   }
 
   if (!data) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#fcfaf7" }}>
-        <p style={{ color: "#797067" }}>No wallet data found. Create a profile first.</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#04040A" }}>
+        <p style={{ color: "#6B6774" }}>No wallet data found. Create a profile first.</p>
       </div>
     );
   }
@@ -116,10 +116,10 @@ export default function WalletPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
-      <div className="mx-auto max-w-5xl px-6 py-12">
-        <div className="flex items-center justify-between mb-10">
-          <h1 className="text-4xl font-bold">Wallet</h1>
+    <div className="min-h-screen" style={{ backgroundColor: "#04040A", color: "#EAE6DF" }}>
+      <div className="mx-auto max-w-5xl px-6 pt-24 pb-12">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <h1 className="text-2xl md:text-4xl font-bold">Wallet</h1>
           <button
             onClick={() => setShowSend(true)}
             className="rounded-md px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 flex items-center gap-2"
@@ -134,49 +134,49 @@ export default function WalletPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-          <div className="rounded-lg p-6" style={{ backgroundColor: "#ffffff", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}>
-            <p className="text-sm" style={{ color: "#797067" }}>Available Balance</p>
-            <h3 className="mt-3 text-4xl font-bold" style={{ color: "#00c758" }}>
+          <div className="rounded-lg p-6" style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}>
+            <p className="text-sm" style={{ color: "#6B6774" }}>Available Balance</p>
+            <h3 className="mt-3 text-2xl md:text-4xl font-bold" style={{ color: "#0AFFB5" }}>
               ${data.balance.toLocaleString()}
             </h3>
-            <p className="mt-2 text-xs" style={{ color: "#797067" }}>Transferable</p>
+            <p className="mt-2 text-xs" style={{ color: "#6B6774" }}>Transferable</p>
           </div>
 
-          <div className="rounded-lg p-6" style={{ backgroundColor: "#ffffff", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}>
-            <p className="text-sm" style={{ color: "#797067" }}>In Escrow</p>
-            <h3 className="mt-3 text-4xl font-bold" style={{ color: "#3080ff" }}>
+          <div className="rounded-lg p-6" style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}>
+            <p className="text-sm" style={{ color: "#6B6774" }}>In Escrow</p>
+            <h3 className="mt-3 text-2xl md:text-4xl font-bold" style={{ color: "#3080ff" }}>
               ${data.escrowBalance.toLocaleString()}
             </h3>
-            <p className="mt-2 text-xs" style={{ color: "#797067" }}>Locked in active contracts</p>
+            <p className="mt-2 text-xs" style={{ color: "#6B6774" }}>Locked in active contracts</p>
           </div>
 
-          <div className="rounded-lg p-6" style={{ backgroundColor: "#ffffff", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}>
-            <p className="text-sm" style={{ color: "#797067" }}>Pending Payouts</p>
-            <h3 className="mt-3 text-4xl font-bold" style={{ color: "#edb200" }}>
+          <div className="rounded-lg p-6" style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}>
+            <p className="text-sm" style={{ color: "#6B6774" }}>Pending Payouts</p>
+            <h3 className="mt-3 text-2xl md:text-4xl font-bold" style={{ color: "#FFB020" }}>
               ${data.pendingPayouts.toLocaleString()}
             </h3>
-            <p className="mt-2 text-xs" style={{ color: "#797067" }}>You owe as client</p>
+            <p className="mt-2 text-xs" style={{ color: "#6B6774" }}>You owe as client</p>
           </div>
 
           <div className="rounded-lg p-6" style={{ backgroundColor: "rgba(254, 110, 0, 0.08)" }}>
             <p className="text-sm" style={{ color: "#fe6e00" }}>Total Assets</p>
-            <h3 className="mt-3 text-4xl font-bold" style={{ color: "#423d38" }}>
+            <h3 className="mt-3 text-2xl md:text-4xl font-bold" style={{ color: "#EAE6DF" }}>
               ${data.totalAssets.toLocaleString()}
             </h3>
             <p className="mt-2 text-xs" style={{ color: "rgba(254, 110, 0, 0.60)" }}>Balance + Escrow</p>
           </div>
         </div>
 
-        <div className="rounded-lg p-6" style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}>
+        <div className="rounded-lg p-6" style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}>
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold" style={{ color: "#423d38" }}>Transactions</h2>
-            <div className="flex rounded-lg p-0.5" style={{ backgroundColor: "#f3f4f6" }}>
+            <h2 className="text-xl font-semibold">Transactions</h2>
+            <div className="flex rounded-lg p-0.5" style={{ backgroundColor: "rgba(255,255,255,0.06)" }}>
               <button
                 onClick={() => setTxTab("internal")}
                 className="rounded-md px-3 py-1.5 text-xs font-semibold transition"
                 style={{
                   backgroundColor: txTab === "internal" ? "#fe6e00" : "transparent",
-                  color: txTab === "internal" ? "#ffffff" : "#797067",
+                  color: txTab === "internal" ? "#ffffff" : "#6B6774",
                 }}
               >
                 Internal
@@ -186,7 +186,7 @@ export default function WalletPage() {
                 className="rounded-md px-3 py-1.5 text-xs font-semibold transition"
                 style={{
                   backgroundColor: txTab === "onchain" ? "#fe6e00" : "transparent",
-                  color: txTab === "onchain" ? "#ffffff" : "#797067",
+                  color: txTab === "onchain" ? "#ffffff" : "#6B6774",
                 }}
               >
                 On-Chain
@@ -197,7 +197,7 @@ export default function WalletPage() {
           {txTab === "internal" ? (
             <>
               {data.transactions.length === 0 ? (
-                <p className="text-sm" style={{ color: "#797067" }}>No transactions yet.</p>
+                <p className="text-sm" style={{ color: "#6B6774" }}>No transactions yet.</p>
               ) : (
                 <div className="space-y-2">
                   {data.transactions.map((tx) => {
@@ -206,7 +206,7 @@ export default function WalletPage() {
                       <div
                         key={tx.id}
                         className="flex items-center justify-between rounded-lg p-4"
-                        style={{ backgroundColor: "#f3f4f6" }}
+                        style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
                       >
                         <div className="flex items-center gap-4">
                           <div
@@ -215,7 +215,7 @@ export default function WalletPage() {
                             {styles.prefix}
                           </div>
                           <div>
-                            <p className="text-sm font-medium capitalize" style={{ color: "#423d38" }}>
+                            <p className="text-sm font-medium capitalize" style={{ color: "#EAE6DF" }}>
                               {tx.type === "TRANSFER"
                                 ? (Number(tx.amount) >= 0
                                     ? tx.description?.startsWith("Sent")
@@ -225,10 +225,10 @@ export default function WalletPage() {
                                 : tx.type.toLowerCase()}
                             </p>
                             {tx.description && (
-                              <p className="text-xs" style={{ color: "#797067" }}>{tx.description}</p>
+                              <p className="text-xs" style={{ color: "#6B6774" }}>{tx.description}</p>
                             )}
                             {tx.counterpartyName && (
-                              <p className="text-xs mt-0.5" style={{ color: "#797067" }}>
+                              <p className="text-xs mt-0.5" style={{ color: "#6B6774" }}>
                                 {tx.counterpartyName}
                               </p>
                             )}
@@ -238,12 +238,12 @@ export default function WalletPage() {
                           <p className="text-sm font-semibold"
                             style={{
                               color: tx.type === "DEPOSIT" || tx.type === "REFUND"
-                                ? "#00c758"
+                                ? "#0AFFB5"
                                 : tx.type === "WITHDRAWAL"
                                 ? "#fb2c36"
                                 : tx.description?.startsWith("Sent")
                                 ? "#fb2c36"
-                                : "#00c758"
+                                : "#0AFFB5"
                             }}
                           >
                             {tx.type === "DEPOSIT" || tx.type === "REFUND"
@@ -255,7 +255,7 @@ export default function WalletPage() {
                               : "+"}$
                             {tx.amount.toLocaleString()}
                           </p>
-                          <p className="text-xs" style={{ color: "#797067" }}>
+                          <p className="text-xs" style={{ color: "#6B6774" }}>
                             {new Date(tx.createdAt).toLocaleDateString()}
                           </p>
                         </div>
@@ -268,9 +268,9 @@ export default function WalletPage() {
           ) : (
             <>
               {onchainLoading ? (
-                <p className="text-sm" style={{ color: "#797067" }}>Loading on-chain transactions...</p>
+                <p className="text-sm" style={{ color: "#6B6774" }}>Loading on-chain transactions...</p>
               ) : onchainTxs.length === 0 ? (
-                <p className="text-sm" style={{ color: "#797067" }}>No on-chain transactions found.</p>
+                <p className="text-sm" style={{ color: "#6B6774" }}>No on-chain transactions found.</p>
               ) : (
                 <div className="space-y-2">
                   {onchainTxs.map((tx) => {
@@ -281,23 +281,23 @@ export default function WalletPage() {
                       <div
                         key={tx.hash}
                         className="flex items-center justify-between rounded-lg p-4"
-                        style={{ backgroundColor: "#f3f4f6" }}
+                        style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
                       >
                         <div className="flex items-center gap-4 min-w-0">
                           <div
                             className="h-9 w-9 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
                             style={{
-                              backgroundColor: isOutgoing ? "rgba(251, 44, 54, 0.15)" : "rgba(0, 199, 88, 0.15)",
-                              color: isOutgoing ? "#fb2c36" : "#00c758",
+                              backgroundColor: isOutgoing ? "rgba(251, 44, 54, 0.15)" : "rgba(10, 255, 181, 0.15)",
+                              color: isOutgoing ? "#fb2c36" : "#0AFFB5",
                             }}
                           >
                             {isOutgoing ? "↑" : "↓"}
                           </div>
                           <div className="min-w-0">
-                            <p className="text-sm font-medium" style={{ color: "#423d38" }}>
+                            <p className="text-sm font-medium" style={{ color: "#EAE6DF" }}>
                               {isOutgoing ? "Sent" : "Received"}
                             </p>
-                            <p className="text-xs truncate max-w-[200px] sm:max-w-xs" style={{ color: "#797067" }}>
+                            <p className="text-xs truncate max-w-[200px] sm:max-w-xs" style={{ color: "#6B6774" }}>
                               {isOutgoing
                                 ? `To: ${tx.to.slice(0, 6)}...${tx.to.slice(-4)}`
                                 : `From: ${tx.from.slice(0, 6)}...${tx.from.slice(-4)}`}
@@ -314,10 +314,10 @@ export default function WalletPage() {
                           </div>
                         </div>
                         <div className="text-right shrink-0 ml-4">
-                          <p className="text-sm font-semibold" style={{ color: isOutgoing ? "#fb2c36" : "#00c758" }}>
+                          <p className="text-sm font-semibold" style={{ color: isOutgoing ? "#fb2c36" : "#0AFFB5" }}>
                             {isOutgoing ? "-" : "+"}{valueEth} ETH
                           </p>
-                          <p className="text-xs" style={{ color: "#797067" }}>
+                          <p className="text-xs" style={{ color: "#6B6774" }}>
                             {date.toLocaleDateString()}
                           </p>
                         </div>
@@ -332,17 +332,17 @@ export default function WalletPage() {
       </div>
 
       {showSend && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ backgroundColor: "rgba(0, 0, 0, 0.50)" }}>
-          <div className="w-full max-w-md rounded-lg p-6 shadow-lg" style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 20px 25px rgba(0,0,0,0.10), 0 8px 10px rgba(0,0,0,0.04)" }}>
-            <h2 className="text-xl font-bold mb-4" style={{ color: "#423d38" }}>Send Funds</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ backgroundColor: "rgba(0, 0, 0, 0.70)" }}>
+          <div className="w-full max-w-md rounded-lg p-6 shadow-lg" style={{ backgroundColor: "#0D0D18", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 20px 25px rgba(0,0,0,0.40), 0 8px 10px rgba(0,0,0,0.20)" }}>
+            <h2 className="text-xl font-bold mb-4" style={{ color: "#EAE6DF" }}>Send Funds</h2>
 
-            <div className="flex rounded-lg p-1 mb-6" style={{ backgroundColor: "#f3f4f6" }}>
+            <div className="flex rounded-lg p-1 mb-6" style={{ backgroundColor: "rgba(255,255,255,0.06)" }}>
               <button
                 onClick={() => { setSendMode("internal"); setSendResult(null); }}
                 className="flex-1 rounded-md py-2 text-sm font-semibold transition"
                 style={{
                   backgroundColor: sendMode === "internal" ? "#fe6e00" : "transparent",
-                  color: sendMode === "internal" ? "#ffffff" : "#797067",
+                  color: sendMode === "internal" ? "#ffffff" : "#6B6774",
                 }}
               >
                 Internal
@@ -352,7 +352,7 @@ export default function WalletPage() {
                 className="flex-1 rounded-md py-2 text-sm font-semibold transition"
                 style={{
                   backgroundColor: sendMode === "onchain" ? "#fe6e00" : "transparent",
-                  color: sendMode === "onchain" ? "#ffffff" : "#797067",
+                  color: sendMode === "onchain" ? "#ffffff" : "#6B6774",
                 }}
               >
                 On-Chain ETH
@@ -360,27 +360,27 @@ export default function WalletPage() {
             </div>
 
             {sendMode === "internal" ? (
-              <p className="text-xs mb-4" style={{ color: "#edb200" }}>Recipient must have a profile on GigDrop to receive funds.</p>
+              <p className="text-xs mb-4" style={{ color: "#FFB020" }}>Recipient must have a profile on GigDrop to receive funds.</p>
             ) : (
-              <p className="text-xs mb-4" style={{ color: "#edb200" }}>Sends real ETH from your connected wallet. Gas fees apply.</p>
+              <p className="text-xs mb-4" style={{ color: "#FFB020" }}>Sends real ETH from your connected wallet. Gas fees apply.</p>
             )}
 
-            <label className="block text-sm mb-1" style={{ color: "#797067" }}>Recipient Wallet Address</label>
+            <label className="block text-sm mb-1" style={{ color: "#6B6774" }}>Recipient Wallet Address</label>
             <input
               value={sendAddr}
               onChange={(e) => setSendAddr(e.target.value)}
               placeholder="0x..."
               className="w-full rounded-md p-4 text-sm font-mono focus:outline-none mb-4"
               style={{
-                backgroundColor: "#f3f4f6",
-                color: "#423d38",
-                border: "1px solid #e3e0dd",
+                backgroundColor: "rgba(255,255,255,0.06)",
+                color: "#EAE6DF",
+                border: "1px solid rgba(255,255,255,0.12)",
               }}
               onFocus={(e) => { e.currentTarget.style.borderColor = "#fe6e00"; e.currentTarget.style.outline = "none" }}
-              onBlur={(e) => { e.currentTarget.style.borderColor = "#e3e0dd" }}
+              onBlur={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)" }}
             />
 
-            <label className="block text-sm mb-1" style={{ color: "#797067" }}>
+            <label className="block text-sm mb-1" style={{ color: "#6B6774" }}>
               Amount {sendMode === "onchain" ? "(ETH)" : "($)"}
             </label>
             <input
@@ -392,17 +392,17 @@ export default function WalletPage() {
               placeholder={sendMode === "onchain" ? "0.00" : "Enter amount..."}
               className="w-full rounded-md p-4 text-sm focus:outline-none mb-4"
               style={{
-                backgroundColor: "#f3f4f6",
-                color: "#423d38",
-                border: "1px solid #e3e0dd",
+                backgroundColor: "rgba(255,255,255,0.06)",
+                color: "#EAE6DF",
+                border: "1px solid rgba(255,255,255,0.12)",
               }}
               onFocus={(e) => { e.currentTarget.style.borderColor = "#fe6e00"; e.currentTarget.style.outline = "none" }}
-              onBlur={(e) => { e.currentTarget.style.borderColor = "#e3e0dd" }}
+              onBlur={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)" }}
             />
 
             {sendResult && (
               <div className="mb-4">
-                <p className="text-sm" style={{ color: sendResult.ok ? "#00c758" : "#fb2c36" }}>
+                <p className="text-sm" style={{ color: sendResult.ok ? "#0AFFB5" : "#fb2c36" }}>
                   {sendResult.msg}
                 </p>
                 {txHash && (
@@ -424,9 +424,9 @@ export default function WalletPage() {
                 onClick={() => { setShowSend(false); setSendResult(null); setTxHash(null); setSendAddr(""); setSendAmount(""); }}
                 className="flex-1 rounded-md px-6 py-3 font-semibold transition"
                 style={{
-                  backgroundColor: "#f3f4f6",
-                  color: "#423d38",
-                  border: "1px solid #e3e0dd",
+                  backgroundColor: "rgba(255,255,255,0.06)",
+                  color: "#EAE6DF",
+                  border: "1px solid rgba(255,255,255,0.12)",
                 }}
               >
                 Cancel

@@ -74,68 +74,68 @@ export default function PostJobPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
-      <div className="mx-auto max-w-2xl px-6 py-12">
+    <div className="min-h-screen" style={{ backgroundColor: "#04040A", color: "#EAE6DF" }}>
+      <div className="mx-auto max-w-2xl px-6 pt-24 pb-12">
         <h1 className="text-3xl font-bold mb-8">Post a New Job</h1>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm mb-1" style={{ color: "#797067" }}>Title</label>
+            <label className="block text-sm mb-1" style={{ color: "#6B6774" }}>Title</label>
             <input
               name="title"
               required
               className="w-full rounded-xl p-4 focus:outline-none focus:border-[#fe6e00]"
-              style={{ backgroundColor: "#f3f4f6", color: "#423d38", border: "1px solid #e3e0dd" }}
+              style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#EAE6DF", border: "1px solid rgba(255,255,255,0.055)" }}
               placeholder="e.g. Build a DeFi Dashboard"
             />
           </div>
           <div>
-            <label className="block text-sm mb-1" style={{ color: "#797067" }}>Description</label>
+            <label className="block text-sm mb-1" style={{ color: "#6B6774" }}>Description</label>
             <textarea
               name="description"
               required
               rows={6}
               className="w-full rounded-xl p-4 placeholder-zinc-500 focus:outline-none focus:border-[#fe6e00]"
-              style={{ backgroundColor: "#f3f4f6", color: "#423d38", border: "1px solid #e3e0dd" }}
+              style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#EAE6DF", border: "1px solid rgba(255,255,255,0.055)" }}
               placeholder="Describe the project in detail..."
             />
           </div>
           <div>
-            <label className="block text-sm mb-1" style={{ color: "#797067" }}>Skills (comma-separated)</label>
+            <label className="block text-sm mb-1" style={{ color: "#6B6774" }}>Skills (comma-separated)</label>
             <input
               name="skills"
               required
               className="w-full rounded-xl p-4 focus:outline-none focus:border-[#fe6e00]"
-              style={{ backgroundColor: "#f3f4f6", color: "#423d38", border: "1px solid #e3e0dd" }}
+              style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#EAE6DF", border: "1px solid rgba(255,255,255,0.055)" }}
               placeholder="React, TypeScript, Solidity"
             />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm mb-1" style={{ color: "#797067" }}>Budget ($)</label>
+              <label className="block text-sm mb-1" style={{ color: "#6B6774" }}>Budget ($)</label>
               <input
                 name="budget"
                 type="number"
                 required
                 min={1}
                 className="w-full rounded-xl p-4 focus:outline-none focus:border-[#fe6e00]"
-                style={{ backgroundColor: "#f3f4f6", color: "#423d38", border: "1px solid #e3e0dd" }}
+                style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#EAE6DF", border: "1px solid rgba(255,255,255,0.055)" }}
                 placeholder="10000"
               />
             </div>
             <div>
-              <label className="block text-sm mb-1" style={{ color: "#797067" }}>Deadline</label>
+              <label className="block text-sm mb-1" style={{ color: "#6B6774" }}>Deadline</label>
               <input
                 name="deadline"
                 type="date"
                 required
                 className="w-full rounded-xl p-4 focus:outline-none focus:border-[#fe6e00]"
-                style={{ backgroundColor: "#f3f4f6", color: "#423d38", border: "1px solid #e3e0dd" }}
+                style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#EAE6DF", border: "1px solid rgba(255,255,255,0.055)" }}
               />
             </div>
           </div>
           {message && (
-            <p className="text-sm" style={{ color: message === "Job posted!" ? "#00c758" : "#fb2c36" }}>
+            <p className="text-sm" style={{ color: message === "Job posted!" ? "#0AFFB5" : "#fb2c36" }}>
               {message}
             </p>
           )}
@@ -143,7 +143,7 @@ export default function PostJobPage() {
             type="submit"
             disabled={loading}
             className="rounded-xl px-6 py-3 font-semibold hover:opacity-90 transition disabled:opacity-50"
-            style={{ backgroundColor: "#ffffff", color: "#423d38", border: "1px solid #e3e0dd" }}
+            style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#EAE6DF", border: "1px solid rgba(255,255,255,0.12)" }}
           >
             {loading ? "Processing..." : `Post Job (${JOB_POST_FEE_ETH} ETH)`}
           </button>

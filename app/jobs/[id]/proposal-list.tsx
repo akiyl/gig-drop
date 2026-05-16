@@ -33,7 +33,7 @@ export default function ProposalList({
   }
 
   if (proposals.length === 0) {
-    return <p style={{ color: "#797067" }}>No proposals yet.</p>;
+    return <p style={{ color: "#6B6774" }}>No proposals yet.</p>;
   }
 
   return (
@@ -46,9 +46,9 @@ export default function ProposalList({
           <div
             key={proposal.id}
             className="rounded-xl p-6"
-            style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}
+            style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}
           >
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
               <div className="flex-1">
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-full flex items-center justify-center text-sm font-bold" style={{ backgroundColor: "#fe6e00", color: "#ffffff" }}>
@@ -59,37 +59,37 @@ export default function ProposalList({
                       {proposal.freelancer.name ?? proposal.freelancer.username ?? "Anonymous"}
                     </p>
                     {proposal.freelancer.hourlyRate && (
-                      <p className="text-sm" style={{ color: "#797067" }}>
+                      <p className="text-sm" style={{ color: "#6B6774" }}>
                         ${proposal.freelancer.hourlyRate}/hr
                       </p>
                     )}
                   </div>
                 </div>
-                <p className="mt-4 text-sm" style={{ color: "#423d38" }}>{proposal.coverLetter}</p>
+                <p className="mt-4 text-sm" style={{ color: "#EAE6DF" }}>{proposal.coverLetter}</p>
               </div>
               <div className="text-right shrink-0">
-                <p className="text-2xl font-bold" style={{ color: "#00c758" }}>
+                <p className="text-2xl font-bold" style={{ color: "#0AFFB5" }}>
                   ${proposal.bidAmount.toLocaleString()}
                 </p>
                 {proposal.timeframe && (
-                  <p className="text-sm" style={{ color: "#797067" }}>{proposal.timeframe} days</p>
+                  <p className="text-sm" style={{ color: "#6B6774" }}>{proposal.timeframe} days</p>
                 )}
                 <span className="mt-2 inline-block rounded-full px-3 py-1 text-xs"
                   style={{
                     backgroundColor: proposal.status === "PENDING"
                       ? "rgba(234, 179, 8, 0.2)"
-                      : proposal.status === "ACCEPTED"
-                      ? "rgba(0, 199, 88, 0.2)"
-                      : proposal.status === "REJECTED"
-                      ? "rgba(251, 44, 54, 0.2)"
-                      : "rgba(121, 112, 103, 0.2)",
-                    color: proposal.status === "PENDING"
-                      ? "#ca8a04"
-                      : proposal.status === "ACCEPTED"
-                      ? "#00c758"
-                      : proposal.status === "REJECTED"
-                      ? "#fb2c36"
-                      : "#797067",
+                    : proposal.status === "ACCEPTED"
+                    ? "rgba(10, 255, 181, 0.2)"
+                    : proposal.status === "REJECTED"
+                    ? "rgba(251, 44, 54, 0.2)"
+                    : "rgba(121, 112, 103, 0.2)",
+                  color: proposal.status === "PENDING"
+                    ? "#ca8a04"
+                    : proposal.status === "ACCEPTED"
+                    ? "#0AFFB5"
+                    : proposal.status === "REJECTED"
+                    ? "#fb2c36"
+                    : "#6B6774",
                   }}
                 >
                   {proposal.status}
@@ -99,7 +99,7 @@ export default function ProposalList({
                     onClick={() => handleAccept(proposal.id)}
                     disabled={accepting === proposal.id}
                     className="mt-3 block w-full rounded-lg px-4 py-2 text-sm font-semibold transition disabled:opacity-50"
-                    style={{ backgroundColor: "#00c758", color: "#ffffff" }}
+                    style={{ backgroundColor: "#0AFFB5", color: "#ffffff" }}
                   >
                     {accepting === proposal.id ? "Accepting..." : "Accept & Start Contract"}
                   </button>

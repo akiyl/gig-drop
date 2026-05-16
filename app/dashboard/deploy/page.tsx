@@ -45,31 +45,31 @@ export default function DeployPage() {
 
   if (!isConnected) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
-        <p style={{ color: "#797067" }}>Connect your wallet to deploy the contract.</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#04040A", color: "#EAE6DF" }}>
+        <p style={{ color: "#6B6774" }}>Connect your wallet to deploy the contract.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
-      <div className="mx-auto max-w-xl px-6 py-12">
+    <div className="min-h-screen" style={{ backgroundColor: "#04040A", color: "#EAE6DF" }}>
+      <div className="mx-auto max-w-xl px-6 pt-24 pb-12">
         <h1 className="text-3xl font-bold mb-2">Deploy GigDrop Contract</h1>
-        <p className="mb-8" style={{ color: "#797067" }}>
+        <p className="mb-8" style={{ color: "#6B6774" }}>
           Deploy the GigDrop smart contract to Sepolia. This will cost a small gas fee.
         </p>
 
         {contractAddr ? (
-          <div className="rounded-2xl p-6" style={{ backgroundColor: "rgba(0, 199, 88, 0.1)", border: "1px solid rgba(0, 199, 88, 0.3)" }}>
-            <p className="font-semibold mb-2" style={{ color: "#00c758" }}>Deployed!</p>
-            <p className="text-sm break-all" style={{ color: "#423d38" }}>{contractAddr}</p>
-            <p className="text-xs mt-2" style={{ color: "#797067" }}>Saved locally. You can now post jobs.</p>
+          <div className="rounded-2xl p-6" style={{ backgroundColor: "rgba(10, 255, 181, 0.1)", border: "1px solid rgba(10, 255, 181, 0.3)" }}>
+            <p className="font-semibold mb-2" style={{ color: "#0AFFB5" }}>Deployed!</p>
+            <p className="text-sm break-all" style={{ color: "#EAE6DF" }}>{contractAddr}</p>
+            <p className="text-xs mt-2" style={{ color: "#6B6774" }}>Saved locally. You can now post jobs.</p>
           </div>
         ) : (
-          <div className="rounded-2xl p-6" style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}>
-            <p className="text-sm mb-4" style={{ color: "#797067" }}>
+          <div className="rounded-2xl p-6" style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}>
+            <p className="text-sm mb-4" style={{ color: "#6B6774" }}>
               Connected as{" "}
-              <span className="font-mono" style={{ color: "#423d38" }}>
+              <span className="font-mono" style={{ color: "#EAE6DF" }}>
                 {address?.slice(0, 6)}...{address?.slice(-4)}
               </span>
             </p>
@@ -85,14 +85,14 @@ export default function DeployPage() {
           </div>
         )}
 
-        <div className="mt-6 rounded-2xl p-6" style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}>
-          <h2 className="text-sm font-semibold mb-2" style={{ color: "#423d38" }}>What this does</h2>
-          <ul className="text-sm space-y-1 list-disc list-inside" style={{ color: "#797067" }}>
+        <div className="mt-6 rounded-2xl p-6" style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}>
+          <h2 className="text-sm font-semibold mb-2" style={{ color: "#EAE6DF" }}>What this does</h2>
+          <ul className="text-sm space-y-1 list-disc list-inside" style={{ color: "#6B6774" }}>
             <li>
-              Deploys a <span style={{ color: "#423d38" }}>GigDrop</span> contract to Sepolia
+              Deploys a <span style={{ color: "#EAE6DF" }}>GigDrop</span> contract to Sepolia
             </li>
             <li>
-              Job posters must pay <span style={{ color: "#423d38" }}>0.00001 ETH</span> to create a
+              Job posters must pay <span style={{ color: "#EAE6DF" }}>0.00001 ETH</span> to create a
               job
             </li>
             <li>Contract owner can withdraw accumulated fees</li>

@@ -17,21 +17,21 @@ export default async function JobDetailPage({
 
   if (!job) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
-        <p style={{ color: "#797067" }}>Job not found.</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#04040A", color: "#EAE6DF" }}>
+        <p style={{ color: "#6B6774" }}>Job not found.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
-      <div className="mx-auto max-w-4xl px-6 py-12">
+    <div className="min-h-screen" style={{ backgroundColor: "#04040A", color: "#EAE6DF" }}>
+      <div className="mx-auto max-w-4xl px-6 pt-24 pb-12">
         <JobDetail job={job} />
         <div className="mt-12">
           <h2 className="text-2xl font-bold mb-6">Proposals ({proposals.length})</h2>
           <ProposalList proposals={proposals} job={job} />
         </div>
-        <div className="mt-12 pt-8" style={{ borderTop: "1px solid #e3e0dd" }}>
+        <div className="mt-12 pt-8" style={{ borderTop: "1px solid rgba(255,255,255,0.055)" }}>
           <h2 className="text-2xl font-bold mb-6">Submit a Proposal</h2>
           <SubmitProposal jobId={job.id} />
         </div>

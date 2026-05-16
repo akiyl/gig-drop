@@ -42,22 +42,22 @@ export default function TestPaymentPage() {
 
   if (!isConnected) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
-        <p style={{ color: "#797067" }}>Connect your wallet to test payments.</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#04040A", color: "#EAE6DF" }}>
+        <p style={{ color: "#6B6774" }}>Connect your wallet to test payments.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#fcfaf7", color: "#423d38" }}>
-      <div className="mx-auto max-w-xl px-6 py-12">
+    <div className="min-h-screen" style={{ backgroundColor: "#04040A", color: "#EAE6DF" }}>
+      <div className="mx-auto max-w-xl px-6 pt-24 pb-12">
         <h1 className="text-3xl font-bold mb-2">Test Payments</h1>
-        <p className="mb-8" style={{ color: "#797067" }}>
+        <p className="mb-8" style={{ color: "#6B6774" }}>
           Simulate deposits and withdrawals to test the wallet flow.
         </p>
 
-        <div className="rounded-2xl p-6" style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}>
-          <label className="block text-sm mb-2" style={{ color: "#797067" }}>Amount ($)</label>
+        <div className="rounded-2xl p-6" style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}>
+          <label className="block text-sm mb-2" style={{ color: "#6B6774" }}>Amount ($)</label>
           <input
             type="number"
             min={1}
@@ -65,7 +65,7 @@ export default function TestPaymentPage() {
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Enter amount..."
             className="w-full rounded-xl p-4 focus:outline-none focus:border-[#fe6e00] mb-4"
-            style={{ backgroundColor: "#f3f4f6", color: "#423d38", border: "1px solid #e3e0dd" }}
+            style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#EAE6DF", border: "1px solid rgba(255,255,255,0.055)" }}
           />
 
           <div className="flex gap-3">
@@ -73,7 +73,7 @@ export default function TestPaymentPage() {
               onClick={handleDeposit}
               disabled={loading || !amount}
               className="flex-1 rounded-xl px-6 py-3 font-semibold transition disabled:opacity-50"
-              style={{ backgroundColor: "#00c758", color: "#ffffff" }}
+              style={{ backgroundColor: "#0AFFB5", color: "#ffffff" }}
             >
               {loading ? "Processing..." : "Deposit"}
             </button>
@@ -90,22 +90,22 @@ export default function TestPaymentPage() {
           {result && (
             <p
               className="mt-4 text-sm"
-              style={{ color: result.ok ? "#00c758" : "#fb2c36" }}
+              style={{ color: result.ok ? "#0AFFB5" : "#fb2c36" }}
             >
               {result.msg}
             </p>
           )}
         </div>
 
-        <div className="mt-6 rounded-2xl p-6" style={{ backgroundColor: "#ffffff", border: "1px solid #e3e0dd", boxShadow: "0 1px 3px rgba(0,0,0,0.10)" }}>
-          <h2 className="text-sm font-semibold mb-3" style={{ color: "#423d38" }}>Quick Fill</h2>
+        <div className="mt-6 rounded-2xl p-6" style={{ backgroundColor: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.055)", boxShadow: "0 1px 3px rgba(0,0,0,0.30)" }}>
+          <h2 className="text-sm font-semibold mb-3" style={{ color: "#EAE6DF" }}>Quick Fill</h2>
           <div className="flex flex-wrap gap-2">
             {[100, 500, 1000, 5000].map((n: number) => (
               <button
                 key={n}
                 onClick={() => setAmount(String(n))}
                 className="rounded-lg px-4 py-2 text-sm transition"
-                style={{ backgroundColor: "#fcfaf7", color: "#797067", border: "1px solid #e3e0dd" }}
+                style={{ backgroundColor: "#04040A", color: "#6B6774", border: "1px solid rgba(255,255,255,0.055)" }}
               >
                 ${n}
               </button>
